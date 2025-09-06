@@ -1,0 +1,22 @@
+nohup: ignoring input
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /api/shops                --> main.getShops (4 handlers)
+[GIN-debug] GET    /api/shops/:shopId/products --> main.getShopProducts (4 handlers)
+[GIN-debug] GET    /api/cart                 --> main.getCart (4 handlers)
+[GIN-debug] POST   /api/cart/items           --> main.addToCart (4 handlers)
+[GIN-debug] PUT    /api/cart/items/:productId --> main.updateCartItem (4 handlers)
+[GIN-debug] DELETE /api/cart/items           --> main.deleteCartItems (4 handlers)
+[GIN-debug] POST   /api/orders               --> main.createOrder (4 handlers)
+[GIN-debug] GET    /api/health               --> main.main.func1 (4 handlers)
+🚀 服务器启动成功!
+🔗 后端地址: http://YOUR_SERVER_IP:8080
+🔍 健康检查: http://YOUR_SERVER_IP:8080/api/health
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN-debug] [ERROR] listen tcp :8080: bind: address already in use
