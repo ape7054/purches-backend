@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 采购小程序后端自动部署脚本
-# 使用方法: ./deploy.sh
+# 使用方法: ./scripts/deploy.sh
 
 set -e  # 遇到错误立即退出
 
@@ -13,14 +13,16 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
+# 切换到项目根目录
+cd "$(dirname "$0")/.."
+
 # 项目配置
-PROJECT_DIR="/root/purches-backend"
 SERVICE_PORT="8080"
 LOG_FILE="server.log"
 
 # 1. 检查是否在正确目录
 if [ ! -f "main.go" ]; then
-    echo -e "${RED}❌ 错误: 请在项目根目录执行此脚本${NC}"
+    echo -e "${RED}❌ 错误: 找不到main.go文件${NC}"
     exit 1
 fi
 
@@ -31,7 +33,7 @@ git pull origin main
 
 # 3. 停止旧的服务
 echo -e "${YELLOW}⏹️  停止旧服务...${NC}"
-pkill -f "go run main.go" || echo "没有运行中的服务"
+pkill -f "go run main.go" || echo "没有运行中的go run服务"
 pkill -f "purches-backend" || echo "没有运行中的二进制服务"
 
 # 等待进程完全停止

@@ -9,29 +9,64 @@
 - **部署方式**: 宝塔面板 + 域名访问
 - **API地址**: https://www.ency.asia/api
 
-## 🛠️ 技术栈
+## 🚀 快速开始
 
-- **后端框架**: [Gin](https://github.com/gin-gonic/gin) - 高性能Go Web框架
-- **数据存储**: 内存存储（生产环境可扩展为数据库）
-- **反向代理**: Nginx
-- **SSL证书**: Let's Encrypt
-- **服务器管理**: 宝塔面板
-- **部署平台**: Ubuntu 服务器
+### 本地开发
+```bash
+# 1. 克隆项目
+git clone https://github.com/ape7054/purches-backend.git
+cd purches-backend
+
+# 2. 启动开发环境
+# Linux/Mac
+./scripts/dev.sh
+
+# Windows  
+scripts\dev.bat
+
+# 3. 访问API
+# 本地: http://localhost:8080/api
+# 线上: https://www.ency.asia/api
+```
+
+### 部署到服务器
+```bash
+# SSH到服务器
+ssh root@47.76.90.227
+cd /root/purches-backend
+./scripts/deploy.sh
+```
 
 ## 📁 项目结构
 
 ```
 purches-backend/
-├── main.go              # 主程序入口和API路由定义
-├── models/              # 数据模型定义
-│   └── models.go        # 所有数据结构和请求响应模型
-├── database/            # 数据库相关（预留扩展）
-│   └── database.go      # 数据库连接和初始化
-├── go.mod               # Go模块依赖
-├── go.sum               # 依赖版本锁定
-├── server.log           # 服务运行日志
-└── README.md            # 项目文档
+├── main.go                    # 主程序入口和API路由
+├── models/                    # 数据模型定义
+├── database/                  # 数据库相关
+├── scripts/                   # 开发和部署脚本
+│   ├── dev.sh                # Linux开发脚本
+│   ├── dev.bat               # Windows开发脚本
+│   ├── deploy.sh             # 部署脚本
+│   └── README.md             # 脚本使用说明
+├── docs/                      # 文档目录
+│   ├── development.md        # 开发指南
+│   └── windows.md            # Windows开发说明
+├── go.mod                     # Go模块依赖
+├── go.sum                     # 依赖版本锁定
+├── server.log                 # 服务运行日志
+├── API.md                     # API接口文档
+└── README.md                  # 项目说明
 ```
+
+## 🛠️ 技术栈
+
+- **后端框架**: [Gin](https://github.com/gin-gonic/gin) - 高性能Go Web框架
+- **数据存储**: SQLite数据库
+- **反向代理**: Nginx
+- **SSL证书**: Let's Encrypt
+- **服务器管理**: 宝塔面板
+- **部署平台**: Ubuntu 服务器
 
 ## 🔗 API接口文档
 
@@ -51,316 +86,35 @@ https://www.ency.asia/api
 }
 ```
 
-### 接口列表
+### 主要接口
+- `GET /shops` - 获取商店列表
+- `GET /shops/{shopId}/products` - 获取商店商品列表
+- `GET /cart` - 查看购物车
+- `POST /cart/items` - 添加商品到购物车
+- `PUT /cart/items/{productId}` - 更新购物车商品数量
+- `DELETE /cart/items` - 删除购物车商品
+- `POST /orders` - 提交订单
+- `GET /health` - 健康检查
 
-#### 1. 商店相关接口
+详细API文档请查看 [API.md](API.md)
 
-##### 1.1 获取商店列表
-- **URL**: `GET /shops`
-- **描述**: 获取所有可用的商店列表
-- **响应示例**:
-```json
-{
-  "code": 200,
-  "message": "获取成功",
-  "data": [
-    {
-      "id": "shop_1",
-      "name": "快驴",
-      "logo": ""
-    },
-    {
-      "id": "shop_2", 
-      "name": "华兴街14号",
-      "logo": ""
-    }
-  ]
-}
+## 🚀 部署架构
+
+```
+用户请求 → Nginx (443/80) → 反向代理 → Go应用 (8080端口)
 ```
 
-##### 1.2 获取商店商品列表
-- **URL**: `GET /shops/{shopId}/products`
-- **描述**: 获取指定商店的所有商品
-- **路径参数**:
-  - `shopId`: 商店ID（如：shop_1）
-- **响应示例**:
-```json
-{
-  "code": 200,
-  "message": "获取成功",
-  "data": [
-    {
-      "id": "prod_1",
-      "name": "盐",
-      "price": 5.00,
-      "imageUrl": ""
-    },
-    {
-      "id": "prod_2",
-      "name": "味精", 
-      "price": 8.00,
-      "imageUrl": ""
-    }
-  ]
-}
-```
-
-#### 2. 购物车相关接口
-
-##### 2.1 查看购物车
-- **URL**: `GET /cart`
-- **描述**: 获取当前用户的购物车内容
-- **响应示例**:
-```json
-{
-  "code": 200,
-  "message": "获取成功",
-  "data": {
-    "items": [
-      {
-        "productId": "prod_1",
-        "productName": "盐",
-        "quantity": 2,
-        "price": 5.00
-      }
-    ],
-    "totalPrice": 10.00
-  }
-}
-```
-
-##### 2.2 添加商品到购物车
-- **URL**: `POST /cart/items`
-- **描述**: 将商品添加到购物车
-- **请求体**:
-```json
-{
-  "productId": "prod_1",
-  "quantity": 2
-}
-```
-- **响应示例**:
-```json
-{
-  "code": 200,
-  "message": "添加成功",
-  "data": null
-}
-```
-
-##### 2.3 更新购物车商品数量
-- **URL**: `PUT /cart/items/{productId}`
-- **描述**: 修改购物车中指定商品的数量
-- **路径参数**:
-  - `productId`: 商品ID
-- **请求体**:
-```json
-{
-  "quantity": 5
-}
-```
-- **响应示例**:
-```json
-{
-  "code": 200,
-  "message": "更新成功",
-  "data": null
-}
-```
-
-##### 2.4 删除购物车商品
-- **URL**: `DELETE /cart/items`
-- **描述**: 从购物车中删除指定商品
-- **请求体**:
-```json
-{
-  "productIds": ["prod_1", "prod_2"]
-}
-```
-- **响应示例**:
-```json
-{
-  "code": 200,
-  "message": "删除成功",
-  "data": null
-}
-```
-
-#### 3. 订单相关接口
-
-##### 3.1 提交订单
-- **URL**: `POST /orders`
-- **描述**: 将购物车中的商品生成订单
-- **请求体**:
-```json
-{
-  "remark": "请尽快配送"
-}
-```
-- **响应示例**:
-```json
-{
-  "code": 200,
-  "message": "订单创建成功",
-  "data": {
-    "orderId": "order_1699123456"
-  }
-}
-```
-
-#### 4. 系统接口
-
-##### 4.1 健康检查
-- **URL**: `GET /health`
-- **描述**: 检查服务器运行状态
-- **响应示例**:
-```json
-{
-  "code": 200,
-  "message": "服务正常",
-  "data": "OK"
-}
-```
-
-## 🚀 部署说明
-
-### 服务器环境
-- **操作系统**: Ubuntu
+### 部署环境
 - **服务器IP**: 47.76.90.227
 - **域名**: www.ency.asia
 - **管理面板**: 宝塔面板
 
-### 部署步骤
+## 📚 开发文档
 
-1. **代码部署**
-   ```bash
-   cd /root/purches-backend
-   go mod tidy
-   go run main.go &
-   ```
-
-2. **域名配置**
-   - 在宝塔面板添加网站: www.ency.asia
-   - 配置反向代理: http://127.0.0.1:8080
-   - 代理目录: /api
-
-3. **SSL证书**
-   - 申请Let's Encrypt免费证书
-   - 开启强制HTTPS访问
-
-### 服务管理
-
-#### 启动服务
-```bash
-cd /root/purches-backend
-nohup go run main.go > server.log 2>&1 &
-```
-
-#### 查看服务状态
-```bash
-ps aux | grep "go run" | grep -v grep
-```
-
-#### 查看服务日志
-```bash
-tail -f /root/purches-backend/server.log
-```
-
-#### 停止服务
-```bash
-pkill -f "go run main.go"
-```
-
-## 🔧 开发指南
-
-### 前端联调
-
-#### JavaScript示例
-```javascript
-// API基地址
-const API_BASE = 'https://www.ency.asia/api'
-
-// 获取商店列表
-async function getShops() {
-  try {
-    const response = await fetch(`${API_BASE}/shops`)
-    const data = await response.json()
-    if (data.code === 200) {
-      console.log('商店列表:', data.data)
-    }
-  } catch (error) {
-    console.error('请求失败:', error)
-  }
-}
-
-// 添加商品到购物车
-async function addToCart(productId, quantity) {
-  try {
-    const response = await fetch(`${API_BASE}/cart/items`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        productId: productId,
-        quantity: quantity
-      })
-    })
-    const data = await response.json()
-    console.log('添加结果:', data)
-  } catch (error) {
-    console.error('添加失败:', error)
-  }
-}
-```
-
-#### uni-app示例
-```javascript
-// 获取商店列表
-uni.request({
-  url: 'https://www.ency.asia/api/shops',
-  method: 'GET',
-  success: (res) => {
-    if (res.data.code === 200) {
-      console.log('商店列表:', res.data.data)
-    }
-  },
-  fail: (err) => {
-    console.error('请求失败:', err)
-  }
-})
-
-// 添加商品到购物车
-uni.request({
-  url: 'https://www.ency.asia/api/cart/items',
-  method: 'POST',
-  header: {
-    'Content-Type': 'application/json'
-  },
-  data: {
-    productId: 'prod_1',
-    quantity: 2
-  },
-  success: (res) => {
-    console.log('添加结果:', res.data)
-  }
-})
-```
-
-## 🐛 错误码说明
-
-| 错误码 | 说明 | 常见原因 |
-|--------|------|----------|
-| 200 | 操作成功 | - |
-| 400 | 请求参数错误 | 缺少必要参数或参数格式错误 |
-| 404 | 资源不存在 | 商店ID或商品ID不存在 |
-| 500 | 服务器内部错误 | 服务器异常 |
-
-## 📊 性能说明
-
-- **响应时间**: < 100ms
-- **并发支持**: 基于Go协程，支持高并发
-- **数据存储**: 当前为内存存储，重启服务数据会重置
+- [开发指南](docs/development.md) - 本地开发环境搭建
+- [Windows开发说明](docs/windows.md) - Windows特殊配置
+- [脚本使用说明](scripts/README.md) - 开发和部署脚本
+- [API接口文档](API.md) - 详细API文档
 
 ## 🔄 版本更新
 
@@ -371,29 +125,22 @@ uni.request({
 - ✅ 订单创建
 - ✅ HTTPS部署
 - ✅ 域名访问
+- ✅ 本地开发环境
+- ✅ 自动部署脚本
 
 ### 未来计划
-- [ ] 数据库持久化存储
 - [ ] 用户认证和授权
 - [ ] 日志监控系统
 - [ ] API限流和缓存
 - [ ] 单元测试覆盖
+- [ ] Docker容器化
 
 ## 📞 联系方式
 
-- **项目负责人**: [你的名字]
-- **技术支持**: [你的联系方式]
 - **服务器**: 47.76.90.227
 - **API地址**: https://www.ency.asia/api
-
-## 📝 更新日志
-
-### 2025-09-06
-- 🎉 项目初始化完成
-- 🚀 成功部署到生产环境
-- 🔒 配置SSL证书
-- 📋 完成API文档
+- **GitHub**: https://github.com/ape7054/purches-backend
 
 ---
 
-**🎯 项目状态**: ✅ 生产就绪，可开始前端联调 
+**🎯 项目状态**: ✅ 生产就绪，支持本地开发 
