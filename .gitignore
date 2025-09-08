@@ -9,6 +9,7 @@ purches-backend
 # 测试二进制文件
 *.test
 
+
 # 输出的二进制文件
 *.out
 

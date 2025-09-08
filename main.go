@@ -392,6 +392,16 @@ func main() {
 				Data:    "OK",
 			})
 		})
+
+		// 重置数据（仅用于开发测试）
+		api.POST("/reset-data", func(c *gin.Context) {
+			database.ResetData()
+			c.JSON(http.StatusOK, models.APIResponse{
+				Code:    200,
+				Message: "数据重置完成",
+				Data:    "重新初始化了10个商店和10个商品",
+			})
+		})
 	}
 
 	fmt.Println("🚀 服务器启动成功!")
