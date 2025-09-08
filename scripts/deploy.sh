@@ -29,12 +29,22 @@ fi
 # 2. 拉取最新代码
 echo -e "${YELLOW}📦 拉取最新代码...${NC}"
 git fetch origin
+
+# 清理Git状态，避免pull失败
+echo -e "${YELLOW}🧹 清理Git状态...${NC}"
+git add . 2>/dev/null || true
+git stash 2>/dev/null || true
+
 git pull origin main
 
 # 3. 停止旧的服务
 echo -e "${YELLOW}⏹️  停止旧服务...${NC}"
 pkill -f "go run main.go" || echo "没有运行中的go run服务"
 pkill -f "purches-backend" || echo "没有运行中的二进制服务"
+
+# 处理端口冲突
+echo -e "${YELLOW}🔓 释放端口${SERVICE_PORT}...${NC}"
+fuser -k ${SERVICE_PORT}/tcp 2>/dev/null || echo "端口${SERVICE_PORT}未被占用"
 
 # 等待进程完全停止
 sleep 2
@@ -85,10 +95,19 @@ else
 fi
 
 # 检查API是否正常
+echo -e "${YELLOW}🏥 检查本地API...${NC}"
 if curl -f -s http://localhost:$SERVICE_PORT/api/health > /dev/null; then
-    echo -e "${GREEN}✅ API健康检查通过${NC}"
+    echo -e "${GREEN}✅ 本地API健康检查通过${NC}"
+    
+    # 检查外网API
+    echo -e "${YELLOW}🌐 检查外网API...${NC}"
+    if curl -f -s https://www.ency.asia/api/health > /dev/null; then
+        echo -e "${GREEN}✅ 外网API健康检查通过${NC}"
+    else
+        echo -e "${YELLOW}⚠️ 外网API检查失败，可能需要等待反向代理更新${NC}"
+    fi
 else
-    echo -e "${RED}❌ API健康检查失败${NC}"
+    echo -e "${RED}❌ 本地API健康检查失败${NC}"
     exit 1
 fi
 
