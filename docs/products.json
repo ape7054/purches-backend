@@ -1,0 +1,658 @@
+[
+  {
+    "id": 1,
+    "name": "牛蛙",
+    "price": 31,
+    "unit": "斤",
+    "description": "牛蛙杀好处理干净去掉内脏和眼睛，去掉爪子，50斤",
+    "supplier": "F35"
+  },
+  {
+    "id": 2,
+    "name": "草鱼",
+    "price": 12,
+    "unit": "斤",
+    "description": "草鱼切块，尽量小块一点，一指宽",
+    "supplier": "快驴"
+  },
+  {
+    "id": 3,
+    "name": "鲫鱼",
+    "price": 15,
+    "unit": "条",
+    "description": "鲫鱼杀好处理干净 去掉内脏，5-7两每条的（8两的太重了）",
+    "supplier": "华兴街14号"
+  },
+  {
+    "id": 4,
+    "name": "带鱼",
+    "price": 28,
+    "unit": "斤",
+    "description": "带鱼切段，去掉内脏，冷冻保存",
+    "supplier": "F35"
+  },
+  {
+    "id": 5,
+    "name": "黄瓜",
+    "price": 4,
+    "unit": "斤",
+    "description": "新鲜黄瓜，长度15-20cm，无农药残留",
+    "supplier": "肖红梅"
+  },
+  {
+    "id": 6,
+    "name": "西红柿",
+    "price": 6,
+    "unit": "斤",
+    "description": "新鲜西红柿，红色成熟，适合做菜",
+    "supplier": "艾武双全大母指"
+  },
+  {
+    "id": 7,
+    "name": "土豆",
+    "price": 3,
+    "unit": "斤",
+    "description": "新土豆，表皮光滑，大小均匀",
+    "supplier": "A12号豆腐档"
+  },
+  {
+    "id": 8,
+    "name": "豆腐",
+    "price": 5,
+    "unit": "块",
+    "description": "新鲜豆腐，嫩滑无渣，当日制作",
+    "supplier": "A12号豆腐档"
+  },
+  {
+    "id": 9,
+    "name": "白菜",
+    "price": 2,
+    "unit": "斤",
+    "description": "大白菜，叶片厚实，新鲜无虫眼",
+    "supplier": "D30"
+  },
+  {
+    "id": 10,
+    "name": "菠菜",
+    "price": 8,
+    "unit": "斤",
+    "description": "新鲜菠菜，根部干净，叶片翠绿",
+    "supplier": "D129"
+  },
+  {
+    "id": 11,
+    "name": "猪肉",
+    "price": 25,
+    "unit": "斤",
+    "description": "新鲜猪肉，五花肉，肥瘦相间",
+    "supplier": "快驴"
+  },
+  {
+    "id": 12,
+    "name": "牛肉",
+    "price": 45,
+    "unit": "斤",
+    "description": "新鲜牛肉，牛腩部位，适合炖煮",
+    "supplier": "快驴"
+  },
+  {
+    "id": 13,
+    "name": "羊肉",
+    "price": 38,
+    "unit": "斤",
+    "description": "新鲜羊肉，去膻味处理，肉质鲜嫩",
+    "supplier": "华兴街14号"
+  },
+  {
+    "id": 14,
+    "name": "鸡蛋",
+    "price": 12,
+    "unit": "斤",
+    "description": "新鲜鸡蛋，土鸡蛋，蛋壳厚实",
+    "supplier": "肖红梅"
+  },
+  {
+    "id": 15,
+    "name": "鸭蛋",
+    "price": 15,
+    "unit": "斤",
+    "description": "新鲜鸭蛋，个头大，营养丰富",
+    "supplier": "肖红梅"
+  },
+  {
+    "id": 16,
+    "name": "大米",
+    "price": 6,
+    "unit": "斤",
+    "description": "优质大米，粒粒饱满，口感香甜",
+    "supplier": "艾武双全大母指"
+  },
+  {
+    "id": 17,
+    "name": "面粉",
+    "price": 5,
+    "unit": "斤",
+    "description": "高筋面粉，适合做面条和包子",
+    "supplier": "艾武双全大母指"
+  },
+  {
+    "id": 18,
+    "name": "花生油",
+    "price": 18,
+    "unit": "升",
+    "description": "纯花生油，香味浓郁，无添加",
+    "supplier": "F35"
+  },
+  {
+    "id": 19,
+    "name": "生抽",
+    "price": 12,
+    "unit": "瓶",
+    "description": "优质生抽，色泽红润，味道鲜美",
+    "supplier": "D30"
+  },
+  {
+    "id": 20,
+    "name": "老抽",
+    "price": 15,
+    "unit": "瓶",
+    "description": "优质老抽，色泽深浓，上色效果好",
+    "supplier": "D30"
+  },
+  {
+    "id": 21,
+    "name": "大葱",
+    "price": 4,
+    "unit": "斤",
+    "description": "新鲜大葱，葱白部分长，香味浓郁",
+    "supplier": "D129"
+  },
+  {
+    "id": 22,
+    "name": "生姜",
+    "price": 8,
+    "unit": "斤",
+    "description": "新鲜生姜，辛辣味足，去腥效果好",
+    "supplier": "D129"
+  },
+  {
+    "id": 23,
+    "name": "大蒜",
+    "price": 10,
+    "unit": "斤",
+    "description": "新鲜大蒜，蒜瓣饱满，香味浓郁",
+    "supplier": "D129"
+  },
+  {
+    "id": 24,
+    "name": "青椒",
+    "price": 6,
+    "unit": "斤",
+    "description": "新鲜青椒，色泽翠绿，辣味适中",
+    "supplier": "肖红梅"
+  },
+  {
+    "id": 25,
+    "name": "红椒",
+    "price": 8,
+    "unit": "斤",
+    "description": "新鲜红椒，色泽鲜艳，甜味浓郁",
+    "supplier": "肖红梅"
+  },
+  {
+    "id": 26,
+    "name": "胡萝卜",
+    "price": 3,
+    "unit": "斤",
+    "description": "新鲜胡萝卜，橙红色，营养丰富",
+    "supplier": "艾武双全大母指"
+  },
+  {
+    "id": 27,
+    "name": "莲藕",
+    "price": 12,
+    "unit": "斤",
+    "description": "新鲜莲藕，孔洞均匀，口感脆嫩",
+    "supplier": "A12号豆腐档"
+  },
+  {
+    "id": 28,
+    "name": "冬瓜",
+    "price": 2,
+    "unit": "斤",
+    "description": "新鲜冬瓜，表皮有白霜，肉质厚实",
+    "supplier": "D30"
+  },
+  {
+    "id": 29,
+    "name": "南瓜",
+    "price": 3,
+    "unit": "斤",
+    "description": "新鲜南瓜，金黄色，甜味浓郁",
+    "supplier": "D30"
+  },
+  {
+    "id": 30,
+    "name": "丝瓜",
+    "price": 5,
+    "unit": "斤",
+    "description": "新鲜丝瓜，嫩绿色，肉质细嫩",
+    "supplier": "D129"
+  },
+  {
+    "id": 31,
+    "name": "茄子",
+    "price": 4,
+    "unit": "斤",
+    "description": "新鲜茄子，紫色发亮，肉质饱满",
+    "supplier": "肖红梅"
+  },
+  {
+    "id": 32,
+    "name": "韭菜",
+    "price": 6,
+    "unit": "斤",
+    "description": "新鲜韭菜，叶片宽厚，香味浓郁",
+    "supplier": "艾武双全大母指"
+  },
+  {
+    "id": 33,
+    "name": "芹菜",
+    "price": 4,
+    "unit": "斤",
+    "description": "新鲜芹菜，茎杆粗壮，叶片翠绿",
+    "supplier": "A12号豆腐档"
+  },
+  {
+    "id": 34,
+    "name": "豆角",
+    "price": 8,
+    "unit": "斤",
+    "description": "新鲜豆角，嫩绿色，无老筋",
+    "supplier": "D30"
+  },
+  {
+    "id": 35,
+    "name": "四季豆",
+    "price": 10,
+    "unit": "斤",
+    "description": "新鲜四季豆，颗粒饱满，口感鲜嫩",
+    "supplier": "D129"
+  },
+  {
+    "id": 36,
+    "name": "豌豆",
+    "price": 12,
+    "unit": "斤",
+    "description": "新鲜豌豆，豆粒饱满，甜味浓郁",
+    "supplier": "肖红梅"
+  },
+  {
+    "id": 37,
+    "name": "玉米",
+    "price": 5,
+    "unit": "根",
+    "description": "新鲜玉米，粒粒饱满，甜味浓郁",
+    "supplier": "艾武双全大母指"
+  },
+  {
+    "id": 38,
+    "name": "山药",
+    "price": 15,
+    "unit": "斤",
+    "description": "新鲜山药，表皮光滑，营养丰富",
+    "supplier": "A12号豆腐档"
+  },
+  {
+    "id": 39,
+    "name": "红薯",
+    "price": 4,
+    "unit": "斤",
+    "description": "新鲜红薯，表皮红润，甜味浓郁",
+    "supplier": "D30"
+  },
+  {
+    "id": 40,
+    "name": "紫薯",
+    "price": 6,
+    "unit": "斤",
+    "description": "新鲜紫薯，紫色深浓，营养价值高",
+    "supplier": "D129"
+  },
+  {
+    "id": 41,
+    "name": "苹果",
+    "price": 8,
+    "unit": "斤",
+    "description": "新鲜苹果，红富士品种，脆甜可口",
+    "supplier": "快驴"
+  },
+  {
+    "id": 42,
+    "name": "香蕉",
+    "price": 6,
+    "unit": "斤",
+    "description": "新鲜香蕉，金黄色，香甜软糯",
+    "supplier": "快驴"
+  },
+  {
+    "id": 43,
+    "name": "橙子",
+    "price": 7,
+    "unit": "斤",
+    "description": "新鲜橙子，汁水丰富，酸甜适中",
+    "supplier": "华兴街14号"
+  },
+  {
+    "id": 44,
+    "name": "柚子",
+    "price": 5,
+    "unit": "个",
+    "description": "新鲜柚子，果肉饱满，清香怡人",
+    "supplier": "华兴街14号"
+  },
+  {
+    "id": 45,
+    "name": "梨",
+    "price": 6,
+    "unit": "斤",
+    "description": "新鲜梨，水分充足，甜脆可口",
+    "supplier": "肖红梅"
+  },
+  {
+    "id": 46,
+    "name": "葡萄",
+    "price": 12,
+    "unit": "斤",
+    "description": "新鲜葡萄，颗粒饱满，甜味浓郁",
+    "supplier": "艾武双全大母指"
+  },
+  {
+    "id": 47,
+    "name": "西瓜",
+    "price": 3,
+    "unit": "斤",
+    "description": "新鲜西瓜，汁水丰富，清甜解腻",
+    "supplier": "A12号豆腐档"
+  },
+  {
+    "id": 48,
+    "name": "哈密瓜",
+    "price": 8,
+    "unit": "斤",
+    "description": "新鲜哈密瓜，香甜浓郁，肉质细腻",
+    "supplier": "D30"
+  },
+  {
+    "id": 49,
+    "name": "草莓",
+    "price": 18,
+    "unit": "斤",
+    "description": "新鲜草莓，红色鲜艳，酸甜可口",
+    "supplier": "D129"
+  },
+  {
+    "id": 50,
+    "name": "蓝莓",
+    "price": 35,
+    "unit": "斤",
+    "description": "新鲜蓝莓，颗粒饱满，营养丰富",
+    "supplier": "F35"
+  },
+  {
+    "id": 51,
+    "name": "虾",
+    "price": 45,
+    "unit": "斤",
+    "description": "新鲜大虾，活蹦乱跳，肉质鲜美",
+    "supplier": "快驴"
+  },
+  {
+    "id": 52,
+    "name": "螃蟹",
+    "price": 60,
+    "unit": "斤",
+    "description": "新鲜螃蟹，膏满肉肥，蟹黄丰富",
+    "supplier": "华兴街14号"
+  },
+  {
+    "id": 53,
+    "name": "扇贝",
+    "price": 25,
+    "unit": "斤",
+    "description": "新鲜扇贝，贝肉饱满，味道鲜美",
+    "supplier": "F35"
+  },
+  {
+    "id": 54,
+    "name": "生蚝",
+    "price": 30,
+    "unit": "斤",
+    "description": "新鲜生蚝，肉质肥美，营养丰富",
+    "supplier": "F35"
+  },
+  {
+    "id": 55,
+    "name": "花蛤",
+    "price": 15,
+    "unit": "斤",
+    "description": "新鲜花蛤，肉质鲜嫩，汤汁鲜美",
+    "supplier": "华兴街14号"
+  },
+  {
+    "id": 56,
+    "name": "海带",
+    "price": 8,
+    "unit": "斤",
+    "description": "新鲜海带，质地厚实，营养丰富",
+    "supplier": "肖红梅"
+  },
+  {
+    "id": 57,
+    "name": "紫菜",
+    "price": 20,
+    "unit": "斤",
+    "description": "优质紫菜，色泽紫黑，口感鲜美",
+    "supplier": "艾武双全大母指"
+  },
+  {
+    "id": 58,
+    "name": "木耳",
+    "price": 25,
+    "unit": "斤",
+    "description": "优质木耳，朵大肉厚，营养丰富",
+    "supplier": "A12号豆腐档"
+  },
+  {
+    "id": 59,
+    "name": "银耳",
+    "price": 30,
+    "unit": "斤",
+    "description": "优质银耳，色泽洁白，胶质丰富",
+    "supplier": "D30"
+  },
+  {
+    "id": 60,
+    "name": "香菇",
+    "price": 18,
+    "unit": "斤",
+    "description": "新鲜香菇，菌盖厚实，香味浓郁",
+    "supplier": "D129"
+  },
+  {
+    "id": 61,
+    "name": "金针菇",
+    "price": 6,
+    "unit": "斤",
+    "description": "新鲜金针菇，菌柄细长，口感爽滑",
+    "supplier": "快驴"
+  },
+  {
+    "id": 62,
+    "name": "杏鲍菇",
+    "price": 12,
+    "unit": "斤",
+    "description": "新鲜杏鲍菇，菌肉厚实，口感鲜美",
+    "supplier": "华兴街14号"
+  },
+  {
+    "id": 63,
+    "name": "平菇",
+    "price": 8,
+    "unit": "斤",
+    "description": "新鲜平菇，菌盖平展，味道鲜美",
+    "supplier": "肖红梅"
+  },
+  {
+    "id": 64,
+    "name": "茶树菇",
+    "price": 15,
+    "unit": "斤",
+    "description": "新鲜茶树菇，菌柄粗壮，营养丰富",
+    "supplier": "艾武双全大母指"
+  },
+  {
+    "id": 65,
+    "name": "白萝卜",
+    "price": 2,
+    "unit": "斤",
+    "description": "新鲜白萝卜，根部粗壮，水分充足",
+    "supplier": "A12号豆腐档"
+  },
+  {
+    "id": 66,
+    "name": "红萝卜",
+    "price": 4,
+    "unit": "斤",
+    "description": "新鲜红萝卜，色泽鲜艳，营养丰富",
+    "supplier": "D30"
+  },
+  {
+    "id": 67,
+    "name": "洋葱",
+    "price": 3,
+    "unit": "斤",
+    "description": "新鲜洋葱，层次分明，辛辣味足",
+    "supplier": "D129"
+  },
+  {
+    "id": 68,
+    "name": "花椰菜",
+    "price": 6,
+    "unit": "斤",
+    "description": "新鲜花椰菜，花球紧实，营养丰富",
+    "supplier": "快驴"
+  },
+  {
+    "id": 69,
+    "name": "西兰花",
+    "price": 8,
+    "unit": "斤",
+    "description": "新鲜西兰花，花球翠绿，营养价值高",
+    "supplier": "华兴街14号"
+  },
+  {
+    "id": 70,
+    "name": "小白菜",
+    "price": 4,
+    "unit": "斤",
+    "description": "新鲜小白菜，叶片嫩绿，口感清脆",
+    "supplier": "肖红梅"
+  },
+  {
+    "id": 71,
+    "name": "生菜",
+    "price": 5,
+    "unit": "斤",
+    "description": "新鲜生菜，叶片翠绿，口感爽脆",
+    "supplier": "艾武双全大母指"
+  },
+  {
+    "id": 72,
+    "name": "苦瓜",
+    "price": 6,
+    "unit": "斤",
+    "description": "新鲜苦瓜，表面凹凸，清热解毒",
+    "supplier": "A12号豆腐档"
+  },
+  {
+    "id": 73,
+    "name": "丝瓜络",
+    "price": 10,
+    "unit": "个",
+    "description": "天然丝瓜络，质地坚韧，用途广泛",
+    "supplier": "D30"
+  },
+  {
+    "id": 74,
+    "name": "竹笋",
+    "price": 12,
+    "unit": "斤",
+    "description": "新鲜竹笋，笋尖嫩黄，口感鲜美",
+    "supplier": "D129"
+  },
+  {
+    "id": 75,
+    "name": "莴笋",
+    "price": 4,
+    "unit": "斤",
+    "description": "新鲜莴笋，茎杆粗壮，口感爽脆",
+    "supplier": "F35"
+  },
+  {
+    "id": 76,
+    "name": "空心菜",
+    "price": 5,
+    "unit": "斤",
+    "description": "新鲜空心菜，茎杆中空，叶片翠绿",
+    "supplier": "快驴"
+  },
+  {
+    "id": 77,
+    "name": "菠菜叶",
+    "price": 6,
+    "unit": "斤",
+    "description": "新鲜菠菜叶，叶片嫩绿，营养丰富",
+    "supplier": "华兴街14号"
+  },
+  {
+    "id": 78,
+    "name": "茼蒿",
+    "price": 8,
+    "unit": "斤",
+    "description": "新鲜茼蒿，香味独特，营养价值高",
+    "supplier": "肖红梅"
+  },
+  {
+    "id": 79,
+    "name": "香菜",
+    "price": 10,
+    "unit": "斤",
+    "description": "新鲜香菜，香味浓郁，提味效果好",
+    "supplier": "艾武双全大母指"
+  },
+  {
+    "id": 80,
+    "name": "薄荷",
+    "price": 15,
+    "unit": "斤",
+    "description": "新鲜薄荷，清香怡人，清热解毒",
+    "supplier": "A12号豆腐档"
+  },
+  {
+    "id": 81,
+    "name": "紫苏",
+    "price": 20,
+    "unit": "斤",
+    "description": "新鲜紫苏，紫色叶片，香味独特",
+    "supplier": "D30"
+  },
+  {
+    "id": 82,
+    "name": "罗勒",
+    "price": 25,
+    "unit": "斤",
+    "description": "新鲜罗勒，香味浓郁，调味佳品",
+    "supplier": "D129"
+  }
+]

@@ -25,8 +25,8 @@ func InitDatabase() {
 
 	// 自动迁移数据表
 	err = DB.AutoMigrate(
-		&models.Shop{},
 		&models.Product{},
+		&models.Supplier{},
 		&models.User{},
 		&models.CartItem{},
 		&models.Order{},
@@ -45,43 +45,43 @@ func InitDatabase() {
 // SeedData 初始化测试数据
 func SeedData() {
 	// 检查是否已经有数据，避免重复插入
-	var shopCount int64
-	DB.Model(&models.Shop{}).Count(&shopCount)
-	if shopCount > 0 {
-		fmt.Printf("Data already exists (%d shops), skipping seed...\n", shopCount)
+	var productCount int64
+	DB.Model(&models.Product{}).Count(&productCount)
+	if productCount > 0 {
+		fmt.Printf("Data already exists (%d products), skipping seed...\n", productCount)
 		return
 	}
 
-	// 插入商店数据
-	shops := []models.Shop{
-		{ID: "shop_1", Name: "快驴", Logo: ""},
-		{ID: "shop_2", Name: "华兴街14号", Logo: ""},
-		{ID: "shop_3", Name: "肖红梅", Logo: ""},
-		{ID: "shop_4", Name: "文武双全大母指", Logo: ""},
-		{ID: "shop_5", Name: "A12号豆腐档", Logo: ""},
-		{ID: "shop_6", Name: "F35", Logo: ""},
-		{ID: "shop_7", Name: "D30", Logo: ""},
-		{ID: "shop_8", Name: "D129", Logo: ""},
-		{ID: "shop_9", Name: "淡水锦龙冻品", Logo: ""},
-		{ID: "shop_10", Name: "易订货", Logo: ""},
+	// 插入供应商数据
+	suppliers := []models.Supplier{
+		{Name: "F35", ContactPerson: "张先生", Phone: "13800138000", Address: "批发市场F35号", Status: "active"},
+		{Name: "D30", ContactPerson: "李女士", Phone: "13800138001", Address: "批发市场D30号", Status: "active"},
+		{Name: "D129", ContactPerson: "王师傅", Phone: "13800138002", Address: "批发市场D129号", Status: "active"},
+		{Name: "快驴", ContactPerson: "客服", Phone: "400-123-4567", Address: "线上平台", Status: "active"},
+		{Name: "A12号豆腐档", ContactPerson: "陈师傅", Phone: "13800138003", Address: "批发市场A12号", Status: "active"},
 	}
 
-	for _, shop := range shops {
-		DB.Create(&shop)
+	for _, supplier := range suppliers {
+		DB.Create(&supplier)
 	}
 
-	// 插入部分商品数据（快驴）
+	// 插入商品数据（符合API文档示例）
 	products := []models.Product{
-		{ID: "prod_1", Name: "盐", Price: 5.00, ShopID: "shop_1"},
-		{ID: "prod_2", Name: "味精", Price: 8.00, ShopID: "shop_1"},
-		{ID: "prod_3", Name: "鸡精", Price: 12.00, ShopID: "shop_1"},
-		{ID: "prod_4", Name: "生抽", Price: 15.00, ShopID: "shop_1"},
-		{ID: "prod_5", Name: "老抽", Price: 16.00, ShopID: "shop_1"},
-		{ID: "prod_6", Name: "大豆油", Price: 25.00, ShopID: "shop_2"},
-		{ID: "prod_7", Name: "大米", Price: 30.00, ShopID: "shop_2"},
-		{ID: "prod_8", Name: "鸡蛋", Price: 18.00, ShopID: "shop_2"},
-		{ID: "prod_9", Name: "芹菜", Price: 6.00, ShopID: "shop_3"},
-		{ID: "prod_10", Name: "腐竹", Price: 22.00, ShopID: "shop_3"},
+		{Name: "牛蛙", Price: 31.00, Unit: "斤", Description: "牛蛙杀好处理干净去掉内脏和眼睛，去掉爪子，50斤", Supplier: "F35", Status: "available"},
+		{Name: "黑鱼片", Price: 28.50, Unit: "斤", Description: "新鲜黑鱼片，无刺", Supplier: "F35", Status: "available"},
+		{Name: "基围虾", Price: 45.00, Unit: "斤", Description: "活基围虾，规格40-50只/斤", Supplier: "F35", Status: "available"},
+		{Name: "白萝卜", Price: 2.50, Unit: "斤", Description: "新鲜白萝卜", Supplier: "D30", Status: "available"},
+		{Name: "胡萝卜", Price: 3.00, Unit: "斤", Description: "新鲜胡萝卜", Supplier: "D30", Status: "available"},
+		{Name: "土豆", Price: 2.80, Unit: "斤", Description: "新鲜土豆", Supplier: "D30", Status: "available"},
+		{Name: "鸡蛋", Price: 6.50, Unit: "斤", Description: "新鲜鸡蛋，散装", Supplier: "D129", Status: "available"},
+		{Name: "鸭蛋", Price: 8.00, Unit: "斤", Description: "新鲜鸭蛋", Supplier: "D129", Status: "available"},
+		{Name: "大米", Price: 5.20, Unit: "斤", Description: "优质大米，5斤装", Supplier: "快驴", Status: "available"},
+		{Name: "面粉", Price: 4.80, Unit: "斤", Description: "高筋面粉，适合做面条", Supplier: "快驴", Status: "available"},
+		{Name: "嫩豆腐", Price: 3.50, Unit: "块", Description: "新鲜嫩豆腐", Supplier: "A12号豆腐档", Status: "available"},
+		{Name: "老豆腐", Price: 3.00, Unit: "块", Description: "结实老豆腐，适合炒菜", Supplier: "A12号豆腐档", Status: "available"},
+		{Name: "豆腐皮", Price: 8.00, Unit: "斤", Description: "手工豆腐皮", Supplier: "A12号豆腐档", Status: "available"},
+		{Name: "青椒", Price: 4.50, Unit: "斤", Description: "新鲜青椒", Supplier: "D30", Status: "available"},
+		{Name: "西红柿", Price: 5.00, Unit: "斤", Description: "新鲜西红柿", Supplier: "D30", Status: "available"},
 	}
 
 	for _, product := range products {
@@ -96,8 +96,8 @@ func ResetData() {
 	fmt.Println("开始重置数据...")
 
 	// 删除所有现有数据
-	DB.Exec("DELETE FROM shops")
 	DB.Exec("DELETE FROM products")
+	DB.Exec("DELETE FROM suppliers")
 	DB.Exec("DELETE FROM users")
 	DB.Exec("DELETE FROM cart_items")
 	DB.Exec("DELETE FROM orders")
@@ -111,36 +111,36 @@ func ResetData() {
 
 // SeedDataForce 强制插入测试数据（不检查是否已存在）
 func SeedDataForce() {
-	// 插入商店数据
-	shops := []models.Shop{
-		{ID: "shop_1", Name: "快驴", Logo: ""},
-		{ID: "shop_2", Name: "华兴街14号", Logo: ""},
-		{ID: "shop_3", Name: "肖红梅", Logo: ""},
-		{ID: "shop_4", Name: "文武双全大母指", Logo: ""},
-		{ID: "shop_5", Name: "A12号豆腐档", Logo: ""},
-		{ID: "shop_6", Name: "F35", Logo: ""},
-		{ID: "shop_7", Name: "D30", Logo: ""},
-		{ID: "shop_8", Name: "D129", Logo: ""},
-		{ID: "shop_9", Name: "淡水锦龙冻品", Logo: ""},
-		{ID: "shop_10", Name: "易订货", Logo: ""},
+	// 插入供应商数据
+	suppliers := []models.Supplier{
+		{Name: "F35", ContactPerson: "张先生", Phone: "13800138000", Address: "批发市场F35号", Status: "active"},
+		{Name: "D30", ContactPerson: "李女士", Phone: "13800138001", Address: "批发市场D30号", Status: "active"},
+		{Name: "D129", ContactPerson: "王师傅", Phone: "13800138002", Address: "批发市场D129号", Status: "active"},
+		{Name: "快驴", ContactPerson: "客服", Phone: "400-123-4567", Address: "线上平台", Status: "active"},
+		{Name: "A12号豆腐档", ContactPerson: "陈师傅", Phone: "13800138003", Address: "批发市场A12号", Status: "active"},
 	}
 
-	for _, shop := range shops {
-		DB.Create(&shop)
+	for _, supplier := range suppliers {
+		DB.Create(&supplier)
 	}
 
-	// 插入部分商品数据（快驴）
+	// 插入商品数据
 	products := []models.Product{
-		{ID: "prod_1", Name: "盐", Price: 5.00, ShopID: "shop_1"},
-		{ID: "prod_2", Name: "味精", Price: 8.00, ShopID: "shop_1"},
-		{ID: "prod_3", Name: "鸡精", Price: 12.00, ShopID: "shop_1"},
-		{ID: "prod_4", Name: "生抽", Price: 15.00, ShopID: "shop_1"},
-		{ID: "prod_5", Name: "老抽", Price: 16.00, ShopID: "shop_1"},
-		{ID: "prod_6", Name: "大豆油", Price: 25.00, ShopID: "shop_2"},
-		{ID: "prod_7", Name: "大米", Price: 30.00, ShopID: "shop_2"},
-		{ID: "prod_8", Name: "鸡蛋", Price: 18.00, ShopID: "shop_2"},
-		{ID: "prod_9", Name: "芹菜", Price: 6.00, ShopID: "shop_3"},
-		{ID: "prod_10", Name: "腐竹", Price: 22.00, ShopID: "shop_3"},
+		{Name: "牛蛙", Price: 31.00, Unit: "斤", Description: "牛蛙杀好处理干净去掉内脏和眼睛，去掉爪子，50斤", Supplier: "F35", Status: "available"},
+		{Name: "黑鱼片", Price: 28.50, Unit: "斤", Description: "新鲜黑鱼片，无刺", Supplier: "F35", Status: "available"},
+		{Name: "基围虾", Price: 45.00, Unit: "斤", Description: "活基围虾，规格40-50只/斤", Supplier: "F35", Status: "available"},
+		{Name: "白萝卜", Price: 2.50, Unit: "斤", Description: "新鲜白萝卜", Supplier: "D30", Status: "available"},
+		{Name: "胡萝卜", Price: 3.00, Unit: "斤", Description: "新鲜胡萝卜", Supplier: "D30", Status: "available"},
+		{Name: "土豆", Price: 2.80, Unit: "斤", Description: "新鲜土豆", Supplier: "D30", Status: "available"},
+		{Name: "鸡蛋", Price: 6.50, Unit: "斤", Description: "新鲜鸡蛋，散装", Supplier: "D129", Status: "available"},
+		{Name: "鸭蛋", Price: 8.00, Unit: "斤", Description: "新鲜鸭蛋", Supplier: "D129", Status: "available"},
+		{Name: "大米", Price: 5.20, Unit: "斤", Description: "优质大米，5斤装", Supplier: "快驴", Status: "available"},
+		{Name: "面粉", Price: 4.80, Unit: "斤", Description: "高筋面粉，适合做面条", Supplier: "快驴", Status: "available"},
+		{Name: "嫩豆腐", Price: 3.50, Unit: "块", Description: "新鲜嫩豆腐", Supplier: "A12号豆腐档", Status: "available"},
+		{Name: "老豆腐", Price: 3.00, Unit: "块", Description: "结实老豆腐，适合炒菜", Supplier: "A12号豆腐档", Status: "available"},
+		{Name: "豆腐皮", Price: 8.00, Unit: "斤", Description: "手工豆腐皮", Supplier: "A12号豆腐档", Status: "available"},
+		{Name: "青椒", Price: 4.50, Unit: "斤", Description: "新鲜青椒", Supplier: "D30", Status: "available"},
+		{Name: "西红柿", Price: 5.00, Unit: "斤", Description: "新鲜西红柿", Supplier: "D30", Status: "available"},
 	}
 
 	for _, product := range products {
