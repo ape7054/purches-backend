@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"purches-backend/config"
 	"purches-backend/controllers"
 	"purches-backend/database"
 	"purches-backend/middleware"
@@ -12,6 +13,17 @@ import (
 )
 
 func main() {
+	// 加载配置
+	cfg, err := config.LoadConfig()
+	if err != nil {
+		panic(fmt.Sprintf("配置加载失败: %v", err))
+	}
+
+	// 设置Gin模式
+	if config.IsProduction() {
+		gin.SetMode(gin.ReleaseMode)
+	}
+
 	// 初始化数据库
 	database.InitDatabase()
 
@@ -36,14 +48,17 @@ func main() {
 	// 设置路由
 	setupRoutes(r, productController, cartController, orderController, supplierController, productService)
 
-	fmt.Println("🚀 采购订单系统后端启动成功!")
-	fmt.Println("💾 使用SQLite数据库存储")
-	fmt.Println("🔗 后端地址: http://localhost:8080")
-	fmt.Println("🔍 健康检查: http://localhost:8080/v1/health")
+	// 启动信息
+	fmt.Printf("🚀 %s 启动成功!\n", cfg.App.Name)
+	fmt.Printf("📦 版本: %s\n", cfg.App.Version)
+	fmt.Printf("🔧 环境: %s\n", cfg.App.Environment)
+	fmt.Printf("💾 数据库: %s\n", cfg.Database.Type)
+	fmt.Printf("🔗 后端地址: http://localhost:%s\n", cfg.Server.Port)
+	fmt.Printf("🔍 健康检查: http://localhost:%s/v1/health\n", cfg.Server.Port)
 	fmt.Println("📖 API文档: 根据 docs/API_接口文档.md")
 
 	// 启动服务器
-	r.Run(":8080")
+	r.Run(":" + cfg.Server.Port)
 }
 
 // setupRoutes 设置路由

@@ -1,13 +1,12 @@
 package services
 
 import (
+	"purches-backend/config"
 	"purches-backend/models"
 	"time"
 
 	"gorm.io/gorm"
 )
-
-const DEFAULT_USER_ID = "user_1"
 
 type CartService struct {
 	db *gorm.DB
@@ -19,9 +18,14 @@ func NewCartService(db *gorm.DB) *CartService {
 	}
 }
 
+// getDefaultUserID 获取默认用户ID
+func (cs *CartService) getDefaultUserID() string {
+	return config.GetConfig().App.DefaultUser
+}
+
 // GetCart 获取购物车
 func (cs *CartService) GetCart() (*models.CartResponse, error) {
-	userID := DEFAULT_USER_ID
+	userID := cs.getDefaultUserID()
 
 	// 确保用户存在
 	var user models.User
@@ -62,7 +66,7 @@ func (cs *CartService) AddToCart(req models.AddToCartRequest) (*models.CartItem,
 		return nil, err
 	}
 
-	userID := DEFAULT_USER_ID
+	userID := cs.getDefaultUserID()
 
 	// 确保用户存在
 	var user models.User
@@ -103,7 +107,7 @@ func (cs *CartService) AddToCart(req models.AddToCartRequest) (*models.CartItem,
 
 // UpdateCartItem 更新购物车商品数量
 func (cs *CartService) UpdateCartItem(itemID int, count int) error {
-	userID := DEFAULT_USER_ID
+	userID := cs.getDefaultUserID()
 
 	// 获取用户信息
 	var user models.User
@@ -129,7 +133,7 @@ func (cs *CartService) UpdateCartItem(itemID int, count int) error {
 
 // DeleteCartItem 删除购物车商品
 func (cs *CartService) DeleteCartItem(itemID int) error {
-	userID := DEFAULT_USER_ID
+	userID := cs.getDefaultUserID()
 
 	// 获取用户信息
 	var user models.User
@@ -148,7 +152,7 @@ func (cs *CartService) DeleteCartItem(itemID int) error {
 
 // ClearCart 清空购物车
 func (cs *CartService) ClearCart() error {
-	userID := DEFAULT_USER_ID
+	userID := cs.getDefaultUserID()
 
 	// 获取用户信息
 	var user models.User

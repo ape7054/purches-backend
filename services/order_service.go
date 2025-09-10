@@ -2,6 +2,7 @@ package services
 
 import (
 	"fmt"
+	"purches-backend/config"
 	"purches-backend/models"
 	"time"
 
@@ -18,9 +19,14 @@ func NewOrderService(db *gorm.DB) *OrderService {
 	}
 }
 
+// getDefaultUserID 获取默认用户ID
+func (os *OrderService) getDefaultUserID() string {
+	return config.GetConfig().App.DefaultUser
+}
+
 // CreateOrder 创建订单（按供应商分组）
 func (os *OrderService) CreateOrder(req models.CreateOrderRequest) ([]models.Order, error) {
-	userID := DEFAULT_USER_ID
+	userID := os.getDefaultUserID()
 
 	// 获取用户信息
 	var user models.User
@@ -105,7 +111,7 @@ func (os *OrderService) CreateOrder(req models.CreateOrderRequest) ([]models.Ord
 
 // GetOrders 获取订单列表
 func (os *OrderService) GetOrders(req models.OrderListRequest) (*models.OrderListResponse, error) {
-	userID := DEFAULT_USER_ID
+	userID := os.getDefaultUserID()
 
 	// 获取用户信息
 	var user models.User
