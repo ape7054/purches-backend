@@ -12,7 +12,7 @@ type Product struct {
 	Unit        string    `json:"unit" gorm:"not null"`
 	Description string    `json:"description"`
 	Supplier    string    `json:"supplier" gorm:"not null"`
-	Status      string    `json:"status" gorm:"default:'available'"` // available, unavailable, discontinued
+	Status      string    `json:"status" gorm:"default:available"` // available, unavailable, discontinued
 	CreatedAt   time.Time `json:"createdAt"`
 	UpdatedAt   time.Time `json:"updatedAt"`
 }
