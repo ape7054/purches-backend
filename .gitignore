@@ -51,6 +51,6 @@ Thumbs.db
 deploy.sh.bak
 *.pid
 
-# 项目特定目录
-prompts/
-conversations/ 
+# # 项目特定目录
+# prompts/
+# conversations/ 
